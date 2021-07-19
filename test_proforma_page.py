@@ -2,6 +2,7 @@ import time
 
 from .pages.login_page import LoginPage
 from .pages.main_menu_page import MainMenuPage
+from .pages.crm_page import CRMPage
 import pytest
 
 
@@ -20,5 +21,12 @@ class TestProformaDemo:
         page = MainMenuPage(browser, link)
         page.open_crm_page()
         opportunity_name = "USD_case"
+        customer_name = "Tom Patterson"
+        page = CRMPage(browser, link)
+        page.create_opportunity_usd(opportunity_name, customer_name)
+
+
+
+
 
 
