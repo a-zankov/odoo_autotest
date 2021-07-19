@@ -20,10 +20,20 @@ class TestProformaDemo:
         link = "https://dev-company.kino-mo.com/web?"
         page = MainMenuPage(browser, link)
         page.open_crm_page()
-        opportunity_name = "USD_case"
+        opportunity_name = "USD_case(AUTOTEST)"
         customer_name = "Tom Patterson"
         page = CRMPage(browser, link)
         page.create_opportunity_usd(opportunity_name, customer_name)
+
+    def test_proforma_flow_eur(self, browser):
+        link = "https://dev-company.kino-mo.com/web?"
+        page = MainMenuPage(browser, link)
+        page.open_crm_page()
+        opportunity_name = "USD_case(AUTOTEST)"
+        customer_name = "Business Consulting Events & Communication S.r.l.s"
+        page = CRMPage(browser, link)
+        page.create_opportunity_eur(opportunity_name, customer_name)
+
 
 
 
