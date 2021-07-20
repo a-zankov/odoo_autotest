@@ -2,6 +2,7 @@ import time
 
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -11,6 +12,7 @@ from .locators import ProformaLocators
 class BasePage:
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
+        self.browser.fullscreen_window()
         self.url = url
         self.browser.implicitly_wait(timeout)
 
@@ -24,7 +26,7 @@ class BasePage:
             return False
         return True
 
-    def add_a_product_to_proforma(self, product_name, qty=1, proforma_level=False):
+    def add_a_product_to_proforma(self, product_name, qty=1, proforma_level=False,):
         self.browser.find_element(*ProformaLocators.ADD_A_PRODUCT_BUTTON).click()
         time.sleep(1)
         self.browser.find_element(*ProformaLocators.PRODUCT_FIELD).send_keys(product_name)
@@ -34,7 +36,8 @@ class BasePage:
             self.browser.find_element(By.CSS_SELECTOR, '[name="product_uom_qty"]').send_keys(qty)
         if proforma_level:
             self.browser.find_element(By.CSS_SELECTOR, '[name="level_id"] .o_input').click()
-            self.browser.find_element(By.XPATH, '//a[text()="End-User"]').click()
+            self.browser.find_element(By.XPATH, f'//a[text()="{proforma_level}"]').click()
+            # self.browser.find_element(By.CSS_SELECTOR, '.ui-menu-item>a').click()
         self.browser.find_element(*ProformaLocators.PROFORMA_TAB).click()
         time.sleep(1)
 
