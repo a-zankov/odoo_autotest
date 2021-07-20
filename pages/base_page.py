@@ -37,7 +37,6 @@ class BasePage:
         if proforma_level:
             self.browser.find_element(By.CSS_SELECTOR, '[name="level_id"] .o_input').click()
             self.browser.find_element(By.XPATH, f'//a[text()="{proforma_level}"]').click()
-            # self.browser.find_element(By.CSS_SELECTOR, '.ui-menu-item>a').click()
         self.browser.find_element(*ProformaLocators.PROFORMA_TAB).click()
         time.sleep(1)
 
