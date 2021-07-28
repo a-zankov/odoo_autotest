@@ -16,7 +16,7 @@ class TestProformaDemo:
         page.open()
         page.login_user(email, password)
 
-    @pytest.mark.correct
+    @pytest.mark.review
     def test_proforma_flow_usd(self, browser):
         link = "https://dev-company.kino-mo.com/web?"
         page = MainMenuPage(browser, link)

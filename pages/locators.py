@@ -23,7 +23,8 @@ class CRMLocators:
     DEAL_TYPE = (By.CSS_SELECTOR, '[name="deal_type"] .ui-autocomplete-input')
     DEAL_TYPE_SELECT = (By.XPATH, '//a[text()="POC"]')
     REFERRED_BY = (By.CSS_SELECTOR, '[name="referred_by"] .ui-autocomplete-input')
-    REFERRED_BY_SELECT = (By.XPATH, '//a[text()="3d-studio-demo-popup"]')
+    TYPE_OF_CONVERSATION = (By.XPATH, '//label[text()="Type of Conversion"]')
+    REFERRED_BY_SELECT = (By.XPATH, '//a[text()="FB Leads Center"]')
     EXPECTED_CLOSING = (By.CSS_SELECTOR, '.o_datepicker_input[name="date_deadline"]')
     CREATE_PROFORMA_FROM_OPP = (By.CSS_SELECTOR, '[name="action_create_new_sale_order"]')
 
