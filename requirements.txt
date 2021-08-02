@@ -13,3 +13,5 @@ selenium==3.141.0
 toml==0.10.2
 urllib3==1.26.6
 wcwidth==0.2.5
+python-dotenv~=0.19.0
+PyVirtualDisplay~=2.2

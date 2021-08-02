@@ -1,6 +1,10 @@
 import pytest
 from selenium import webdriver
+from dotenv import load_dotenv
+import os
+from pyvirtualdisplay import Display
 
+load_dotenv()
 
 
 def pytest_addoption(parser):
@@ -13,7 +17,10 @@ def pytest_addoption(parser):
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
-    browser = None
+    display = None
+    if not int(os.getenv('SHOW_BROWSER', 0)):
+        display = Display(visible=False)
+        display.start()
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = webdriver.ChromeOptions()
@@ -30,3 +37,5 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
+    if display:
+        display.stop()
