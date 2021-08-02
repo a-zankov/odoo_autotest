@@ -22,8 +22,16 @@ class MainMenuPage(BasePage):
         print(apps_name)
         for i in apps_name:
             self.browser.find_element(By.CSS_SELECTOR, f'[data-menu-xmlid="{i}"]').click()
-            time.sleep(2)
-            back_to_main = WebDriverWait(self.browser, 5).until(
-                EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_toggle ')))
-            back_to_main.click()
-            time.sleep(2)
+            WebDriverWait(self.browser, 5).until(
+                EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
+            assert "action" in self.browser.current_url or \
+                   "https://dev-company.kino-mo.com/" == self.browser.current_url, f"Can't open menu '{i}'"
+            while True:
+                back_to_main = WebDriverWait(self.browser, 5).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_toggle')))
+                back_to_main.click()
+                app_elem = WebDriverWait(self.browser, 5).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, '[class="o_app o_menuitem"]')))
+                if app_elem:
+                    break
+
