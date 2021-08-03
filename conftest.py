@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 from pyvirtualdisplay import Display
 
-load_dotenv()
+# load_dotenv()
 
 
 def pytest_addoption(parser):
@@ -17,13 +17,19 @@ def pytest_addoption(parser):
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
-    display = None
-    if not int(os.getenv('SHOW_BROWSER', 0)):
-        display = Display(visible=False)
-        display.start()
+    # display = None
+    # if not int(os.getenv('SHOW_BROWSER', 0)):
+    display = Display(visible=True, size=(1920, 1080), backend="xvfb")
+    display.start()
+    print("\nvirtual display starts...")
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = webdriver.ChromeOptions()
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-setuid-sandbox")
+        options.add_argument("--disable-dev-shm-using")
+        options.add_argument("--disable-extensions")
+        options.add_argument("--disable-gpu")
         # options.add_argument('headless')
         options.add_experimental_option('excludeSwitches',
                                         ['enable-logging'])  # выбрасываем мусор из логов (опция для Windows)
@@ -39,3 +45,4 @@ def browser(request):
     browser.quit()
     if display:
         display.stop()
+        print("\nvirtual display closed...")
