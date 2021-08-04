@@ -10,14 +10,13 @@ from .locators import ProformaLocators
 
 
 class BasePage:
-    def __init__(self, browser, url, timeout=10):
+    def __init__(self, browser, timeout=10):
         self.browser = browser
         self.browser.fullscreen_window()
-        self.url = url
         self.browser.implicitly_wait(timeout)
 
-    def open(self):
-        self.browser.get(self.url)
+    def open(self, url):
+        self.browser.get(url)
 
     def is_element_present(self, how, what):
         try:

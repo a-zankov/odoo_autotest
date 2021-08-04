@@ -19,9 +19,9 @@ def browser(request):
     user_language = request.config.getoption("language")
     # display = None
     # if not int(os.getenv('SHOW_BROWSER', 0)):
-    display = Display(visible=True, size=(1920, 1080), backend="xvfb")
-    display.start()
-    print("\nvirtual display starts...")
+    # display = Display(visible=True, size=(1920, 1080), backend="xvfb")
+    # display.start()
+    # print("\nvirtual display starts...")
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = webdriver.ChromeOptions()
@@ -43,6 +43,6 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
-    if display:
-        display.stop()
-        print("\nvirtual display closed...")
+    # if display:
+    #     display.stop()
+    #     print("\nvirtual display closed...")
