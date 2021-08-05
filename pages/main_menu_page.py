@@ -13,8 +13,9 @@ class MainMenuPage(BasePage):
         crm_app_button = self.browser.find_element(*MainPageLocators.CRM_APP)
         crm_app_button.click()
 
-    def click_all_apps(self):
+    def click_all_apps(self, link):
         apps = self.browser.find_elements(By.CSS_SELECTOR, '[class="o_app o_menuitem"]')
+        print(self.browser.current_url)
         apps_name = []
         for i in apps:
             apps_attr = i.get_attribute("data-menu-xmlid")
@@ -25,7 +26,7 @@ class MainMenuPage(BasePage):
             WebDriverWait(self.browser, 15).until(
                 EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
             assert "action" in self.browser.current_url or \
-                   "https://stage-company.kino-mo.com/" == self.browser.current_url, f"Can't open menu '{i}'"
+                   link == self.browser.current_url, f"Can't open menu '{i}'"
             while True:
                 back_to_main = WebDriverWait(self.browser, 15).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_toggle')))

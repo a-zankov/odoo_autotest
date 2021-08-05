@@ -8,16 +8,18 @@ import pytest
 
 
 class TestClickApps:
-    @pytest.fixture(scope="function", autouse=True, params=['default', 'helpdesk', 'financial', 'sales'])
-    def setup(self, request, browser):
+    #@pytest.fixture(scope="function", autouse=True, params=['default', 'helpdesk', 'financial', 'sales'])
+    @pytest.fixture(scope="function", autouse=True, params=['default'])
+    def setup(self, request, browser, environment):
         cfg = LoginConfig(user_type=request.param)
-        link = "https://stage-company.kino-mo.com/web/login"
+        link = f"https://{environment}-company.kino-mo.com/web/login"
         email = cfg.login
         password = cfg.password
         page = LoginPage(browser)
         page.open(link)
         page.login_user(email, password)
 
-    def test_click_all_apps(self, browser):
+    def test_click_all_apps(self, browser, environment):
         page = MainMenuPage(browser)
-        page.click_all_apps()
+        link = f"https://{environment}-company.kino-mo.com/"
+        page.click_all_apps(link)

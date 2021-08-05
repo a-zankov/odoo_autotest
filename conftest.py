@@ -13,6 +13,15 @@ def pytest_addoption(parser):
     parser.addoption('--language', action='store', default='en', help='Choose browser language')
     parser.addoption('--virtual_display', action='store', default='on',
                      help='Choose virtual_display mode: on or off')
+    parser.addoption('--environment', action='store', default='stage',
+                     help='Please, select testing environment', choices=('stage', 'dev', 'test01'))
+
+
+@pytest.fixture(scope='function')
+def environment(request):
+    environment = request.config.getoption("environment")
+    yield environment
+
 
 @pytest.fixture(scope="function")
 def browser(request):
