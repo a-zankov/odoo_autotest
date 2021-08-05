@@ -11,17 +11,20 @@ def pytest_addoption(parser):
     parser.addoption('--browser_name', action='store', default="chrome",
                      help="Choose browser: chrome or firefox")
     parser.addoption('--language', action='store', default='en', help='Choose browser language')
-
+    parser.addoption('--virtual_display', action='store', default='on',
+                     help='Choose virtual_display mode: on or off')
 
 @pytest.fixture(scope="function")
 def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
-    # display = None
-    # if not int(os.getenv('SHOW_BROWSER', 0)):
-    # display = Display(visible=True, size=(1920, 1080), backend="xvfb")
-    # display.start()
-    # print("\nvirtual display starts...")
+    virtual_display = request.config.getoption("virtual_display")
+    if virtual_display == "on":
+        display = Display(visible=True, size=(1920, 1080), backend="xvfb")
+        display.start()
+        print("\nvirtual display starts...")
+    elif virtual_display == "off":
+        display = None
     if browser_name == "chrome":
         print("\nstart chrome browser for test..")
         options = webdriver.ChromeOptions()
@@ -43,6 +46,6 @@ def browser(request):
     yield browser
     print("\nquit browser..")
     browser.quit()
-    # if display:
-    #     display.stop()
-    #     print("\nvirtual display closed...")
+    if display:
+        display.stop()
+        print("\nvirtual display closed...")
