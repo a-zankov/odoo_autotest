@@ -8,8 +8,7 @@ import pytest
 
 
 class TestClickApps:
-    #@pytest.fixture(scope="function", autouse=True, params=['default', 'helpdesk', 'financial', 'sales'])
-    @pytest.fixture(scope="function", autouse=True, params=['default'])
+    @pytest.fixture(scope="function", autouse=True, params=['default', 'helpdesk', 'financial', 'sales'])
     def setup(self, request, browser, environment):
         cfg = LoginConfig(user_type=request.param)
         link = f"https://{environment}-company.kino-mo.com/web/login"
