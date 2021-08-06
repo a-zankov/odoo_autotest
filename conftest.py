@@ -28,6 +28,7 @@ def browser(request):
     browser_name = request.config.getoption("browser_name")
     user_language = request.config.getoption("language")
     virtual_display = request.config.getoption("virtual_display")
+    display = None
     if virtual_display == "on":
         display = Display(visible=True, size=(1920, 1080), backend="xvfb")
         display.start()
