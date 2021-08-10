@@ -31,7 +31,7 @@ class MainMenuPage(BasePage):
                 back_to_main = WebDriverWait(self.browser, 15).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_toggle')))
                 back_to_main.click()
-                app_elem = WebDriverWait(self.browser, 30).until(
+                app_elem = WebDriverWait(self.browser, 9).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, '[class="o_app o_menuitem"]')))
                 if app_elem:
                     break
