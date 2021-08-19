@@ -13,7 +13,9 @@ class MainPageLocators:
 
 
 class CRMLocators:
+    CREATE_OPP_LIST_VIEW = (By.CSS_SELECTOR, '.o_list_button_add')
     CREATE_CRM_BUTTON = (By.CSS_SELECTOR, '.o-kanban-button-new')
+    OPPORTUNITY_NAME_LIST_VIEW = (By.CSS_SELECTOR, '[placeholder="e.g. Product Pricing"]')
     OPPORTUNITY_NAME = (By.CSS_SELECTOR, '.o_field_char')
     CUSTOMER_NAME = (By.CSS_SELECTOR, '.ui-autocomplete-input')
     OPPORTUNITY_ADD_TO_KANBAN = (By.CSS_SELECTOR, '.o_kanban_add')
@@ -33,7 +35,9 @@ class ProformaLocators:
     PRODUCT_FIELD = (By.CSS_SELECTOR, '[name="product_id"] .ui-autocomplete-input')
     SELECT_FROM_DROPDOWN = (By.XPATH, '//a[text()="[Solo L (US)] HYPERVSN Solo L (US)"]')
     ADD_A_SECTION_BUTTON = (By.XPATH, '//a[text()="Add a section"]')
-    PROFORMA_TAB = (By.XPATH, '//a[text() = "Proforma Lines"]')
+    PROFORMA_TAB = (By.XPATH, '//a[text() = "Order Lines"]')
+    PAYMENT_TERMS = (By.CSS_SELECTOR, '[name="payment_term_id"] .o_input_dropdown')
+    INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_invoice"]')
 
 
 
