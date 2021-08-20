@@ -40,6 +40,7 @@ class ProformaLocators:
     INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_invoice"]')
     SALE_ORDER_LATEST_CONFIRMED = (By.XPATH, '//td[text()="Nothing to Invoice"]')
     SALE_ORDER_TRANSFERS_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_delivery"]')
+    SALE_ORDER_INVOICES_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_invoice"]')
 
 
 class TransferLocators:
@@ -47,6 +48,12 @@ class TransferLocators:
     APPLY_IMMEDIATE_TRANSFER = (By.XPATH, '//span[text()="Apply"]')
     IMMEDIATE_TRANSFER_WINDOW = (By.XPATH, '//h4[text()="Immediate Transfer?"]')
     RETURN_BUTTON = (By.XPATH, '//span[text()="Return"]')
+
+
+class InvoiceLocators:
+    INVOICE_VALIDATE = (By.XPATH, '//span[text()="Validate"]')
+
+
 
 
 

@@ -6,6 +6,7 @@ from .pages.login_page import LoginPage
 from .pages.main_menu_page import MainMenuPage
 from .pages.crm_page import CRMPage
 from .pages.transfer_page import TransferPage
+from .pages.invoice_page import InvoicePage
 import pytest
 
 
@@ -61,6 +62,18 @@ class TestSalePipeline:
         page = TransferPage(browser)
         page.validate_transfer()
         page.should_be_transfer_validated()
+
+    def test_validate_invoice_from_sale_order(self, browser, environment):
+        if environment != 'stage':
+            pytest.xfail("Test could be unstable if running not on stage env")
+        page = MainMenuPage(browser)
+        page.open_proforma_page()
+        page = ProformaPage(browser)
+        page.open_latest_confirmed_sale_order()
+        page.open_sale_order_invoice()
+        page = InvoicePage(browser)
+
+
 
 
 

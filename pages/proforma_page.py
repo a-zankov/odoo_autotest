@@ -16,3 +16,6 @@ class ProformaPage(BasePage):
 
     def open_sale_order_delivery(self):
         self.browser.find_element(*ProformaLocators.SALE_ORDER_TRANSFERS_SMARTBUTTON).click()
+
+    def open_sale_order_invoice(self):
+        self.browser.find_element(*ProformaLocators.SALE_ORDER_INVOICES_SMARTBUTTON)
