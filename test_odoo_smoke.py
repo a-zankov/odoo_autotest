@@ -19,7 +19,10 @@ class TestClickApps:
         password = cfg.password
         page = LoginPage(browser)
         page.open(link)
+        page.should_be_reachable_login_page()
         page.login_user(email, password)
+        page.should_be_successful_login()
+
 
     def test_click_all_apps(self, browser, environment):
         page = MainMenuPage(browser)

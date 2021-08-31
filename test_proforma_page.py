@@ -14,7 +14,9 @@ class TestProformaDemo:
         password = "e8848c8611"
         page = LoginPage(browser)
         page.open(link)
+        page.should_be_reachable_login_page()
         page.login_user(email, password)
+        page.should_be_successful_login()
 
     @pytest.mark.review
     def test_proforma_flow_usd(self, browser):

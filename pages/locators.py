@@ -10,7 +10,7 @@ class LoginPageLocators:
 class MainPageLocators:
     SALES_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="sale.sale_menu_root"]')
     CRM_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="crm.crm_menu_root"]')
-
+    USER_MENU_BAR = (By.CSS_SELECTOR, '.o_user_menu')
 
 class CRMLocators:
     CREATE_OPP_LIST_VIEW = (By.CSS_SELECTOR, '.o_list_button_add')
