@@ -23,13 +23,13 @@ class TestClickApps:
         page.login_user(email, password)
         page.should_be_successful_login()
 
-
     def test_click_all_apps(self, browser, environment):
         page = MainMenuPage(browser)
         link = f"https://{environment}-company.kino-mo.com/"
         page.click_all_apps(link)
 
 
+@pytest.skip
 class TestSalePipeline:
     @pytest.fixture(scope="function", autouse=True)
     def setup(self, request, browser, environment):
@@ -75,10 +75,3 @@ class TestSalePipeline:
         page.open_latest_confirmed_sale_order()
         page.open_sale_order_invoice()
         page = InvoicePage(browser)
-
-
-
-
-
-
-
