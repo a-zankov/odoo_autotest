@@ -12,8 +12,9 @@ def generate_random_company(domain=None, email_prefix=None):
         email_prefix = "autotestuser"
 
     random_email_string_length = 10
-    random_string = "".join(random.choices(string.ascii_lowercase, k=random_email_string_length))
+    random_email_string = "".join(random.choices(string.ascii_lowercase, k=random_email_string_length))
+    random_name_string = "".join(random.choices())
 
-    email = f"{email_prefix}_{random_string}@{domain}"
+    email = f"{email_prefix}_{random_email_string}@{domain}"
 
 
