@@ -12,7 +12,7 @@ class TransferPage(BasePage):
         immediate_transfer = self.browser.find_element(*TransferLocators.IMMEDIATE_TRANSFER_WINDOW)
         if immediate_transfer:
             self.browser.find_element(*TransferLocators.APPLY_IMMEDIATE_TRANSFER).click()
-        WebDriverWait(self.browser, 20).until(
+        WebDriverWait(self.browser, 30).until(
             EC.element_to_be_clickable((By.XPATH, '//span[text()="Return"]')))
 
     def should_be_transfer_validated(self):

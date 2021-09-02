@@ -7,7 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from .base_page import BasePage
 from .locators import MainPageLocators
 
+
 class MainMenuPage(BasePage):
+    def open_contacts_page(self):
+        contacts_app_button = self.browser.find_element(*MainPageLocators.CONTACTS_APP)
+        contacts_app_button.click()
+
     def open_crm_page(self):
         crm_app_button = self.browser.find_element(*MainPageLocators.CRM_APP)
         crm_app_button.click()
@@ -37,4 +42,3 @@ class MainMenuPage(BasePage):
                 #     EC.element_to_be_clickable((By.CSS_SELECTOR, '[class="o_app o_menuitem"]')))
                 if app_elem:
                     break
-

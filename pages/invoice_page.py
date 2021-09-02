@@ -10,4 +10,7 @@ class InvoicePage(BasePage):
     def validate_invoice(self):
         self.browser.find_element(*InvoiceLocators.INVOICE_VALIDATE).click()
 
+    def should_be_invoice_paid(self):
+        assert self.is_element_present(*InvoiceLocators.INVOICE_PAID_STATE), "Invoice is not paid"
+
 

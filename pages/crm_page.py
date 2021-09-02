@@ -1,5 +1,6 @@
 import time
 
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
@@ -135,20 +136,35 @@ class CRMPage(BasePage):
         self.add_a_product_to_proforma("[KM-A-DOME-L-100.A] HYPERVSN Dome L", 1)
         self.add_a_product_to_proforma("[KM-A-TR-100.A] HYPERVSN Tripod", 1)
         self.add_a_section_to_proforma("Delivery")
-        self.add_a_product_to_proforma("[Delivery-E] Accessories delivery (Economy)", 1)
+        self.add_a_product_to_proforma("[Delivery-E] Accessories delivery way (Economy)", 1)
         self.browser.find_element(By.CSS_SELECTOR, '.o_form_button_save').click()
-        time.sleep(7)
-        self.browser.find_element(By.CSS_SELECTOR, '[name="button_send_to_operation"]').click()
-        WebDriverWait(self.browser, 15).until(
-            EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
-        self.browser.find_element(By.CSS_SELECTOR, '.fa-close').click()
         time.sleep(3)
-        self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
-        WebDriverWait(self.browser, 15).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, '.o_menu_brand')))
+        self.browser.find_element(By.CSS_SELECTOR, '[name="button_send_to_operation"]').click()
+        # WebDriverWait(self.browser, 15).until(
+        #     EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
+        try:
+            self.browser.find_element(By.CSS_SELECTOR, '.fa-close')
+        except NoSuchElementException:
+            pass
+        else:
+            self.browser.find_element(By.CSS_SELECTOR, '.fa-close').click()
+        try:
+            self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
+        except NoSuchElementException:
+            pass
+        else:
+            self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
+        # WebDriverWait(self.browser, 15).until(
+        #     EC.presence_of_element_located((By.CSS_SELECTOR, '.o_menu_brand')))
 
     def should_be_invoice_smartbutton(self):
         assert self.is_element_present(*ProformaLocators.INVOICE_SMARTBUTTON), \
             'No invoice smartbutton created'
+
+    def should_be_delivery_smartbutton(self):
+        assert self.is_element_present(*ProformaLocators.DELIVERY_SMARTBUTTON), \
+            'No delivery smartbutton created'
+
+
 
 

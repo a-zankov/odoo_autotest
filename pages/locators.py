@@ -11,6 +11,7 @@ class MainPageLocators:
     SALES_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="sale.sale_menu_root"]')
     CRM_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="crm.crm_menu_root"]')
     USER_MENU_BAR = (By.CSS_SELECTOR, '.o_user_menu')
+    CONTACTS_APP = '[data-menu-xmlid="contacts.menu_contacts"]'
 
 class CRMLocators:
     CREATE_OPP_LIST_VIEW = (By.CSS_SELECTOR, '.o_list_button_add')
@@ -37,8 +38,10 @@ class ProformaLocators:
     ADD_A_SECTION_BUTTON = (By.XPATH, '//a[text()="Add a section"]')
     PROFORMA_TAB = (By.XPATH, '//a[text() = "Order Lines"]')
     PAYMENT_TERMS = (By.CSS_SELECTOR, '[name="payment_term_id"] .o_input_dropdown')
-    INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_invoice"]')
-    SALE_ORDER_LATEST_CONFIRMED = (By.XPATH, '//td[text()="Nothing to Invoice"]')
+    INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[class="btn oe_stat_button"][name="action_view_invoice"]')
+    DELIVERY_SMARTBUTTON = (By.CSS_SELECTOR, '[class="btn oe_stat_button"][name="action_view_delivery"]')
+    SALE_ORDER_LATEST_CONFIRMED_DELIVERY = (By.XPATH, '//td[text()="Nothing to Invoice"]')
+    SALE_ORDER_LATEST_CONFIRMED_INVOICE = (By.XPATH, '//td[text()="Fully Invoiced"]')
     SALE_ORDER_TRANSFERS_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_delivery"]')
     SALE_ORDER_INVOICES_SMARTBUTTON = (By.CSS_SELECTOR, '[name="action_view_invoice"]')
 
@@ -47,11 +50,14 @@ class TransferLocators:
     TRANSFER_VALIDATE = (By.XPATH, '//span[text()="Validate"]')
     APPLY_IMMEDIATE_TRANSFER = (By.XPATH, '//span[text()="Apply"]')
     IMMEDIATE_TRANSFER_WINDOW = (By.XPATH, '//h4[text()="Immediate Transfer?"]')
-    RETURN_BUTTON = (By.XPATH, '//span[text()="Return"]')
+    RETURN_BUTTON = (By.XPATH, '//button[@class="btn btn-secondary"]/span[text()="Return"]')
 
 
 class InvoiceLocators:
     INVOICE_VALIDATE = (By.XPATH, '//span[text()="Validate"]')
+    INVOICE_PAID_STATE = (By.XPATH, '//div/button[@aria-current="step"][@data-value="paid"]')
+
+
 
 
 
