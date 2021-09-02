@@ -29,49 +29,62 @@ class TestClickApps:
         page.click_all_apps(link)
 
 
-@pytest.skip
-class TestSalePipeline:
-    @pytest.fixture(scope="function", autouse=True)
-    def setup(self, request, browser, environment):
-        cfg = LoginConfig(user_type='default')
-        link = f"https://{environment}-company.kino-mo.com/web/login"
-        email = cfg.login
-        password = cfg.password
-        page = LoginPage(browser)
-        page.open(link)
-        page.login_user(email, password)
-
-    @pytest.mark.debuging
-    def test_confirm_sale_order(self, browser, environment):
-        if environment != 'stage':
-            pytest.xfail("Test could be unstable if running not on stage env")
-        page = MainMenuPage(browser)
-        page.open_crm_page()
-        opportunity_name = "USD_case_check_invoice(AUTOTEST)"
-        customer_name = "Tom Patterson"
-        page = CRMPage(browser)
-        page.create_opportunity_usd_list_view(opportunity_name, customer_name)
-        page.should_be_invoice_smartbutton()
-
-    @pytest.mark.debuging
-    def test_validate_transfer_from_sale_order(self, browser, environment):
-        if environment != 'stage':
-            pytest.xfail("Test could be unstable if running not on stage env")
-        page = MainMenuPage(browser)
-        page.open_proforma_page()
-        page = ProformaPage(browser)
-        page.open_latest_confirmed_sale_order()
-        page.open_sale_order_delivery()
-        page = TransferPage(browser)
-        page.validate_transfer()
-        page.should_be_transfer_validated()
-
-    def test_validate_invoice_from_sale_order(self, browser, environment):
-        if environment != 'stage':
-            pytest.xfail("Test could be unstable if running not on stage env")
-        page = MainMenuPage(browser)
-        page.open_proforma_page()
-        page = ProformaPage(browser)
-        page.open_latest_confirmed_sale_order()
-        page.open_sale_order_invoice()
-        page = InvoicePage(browser)
+# class TestSalePipeline:
+#     @pytest.fixture(scope="function", autouse=True)
+#     def setup(self, request, browser, environment):
+#         cfg = LoginConfig(user_type='default')
+#         link = f"https://{environment}-company.kino-mo.com/web/login"
+#         email = cfg.login
+#         password = cfg.password
+#         page = LoginPage(browser)
+#         page.open(link)
+#         page.login_user(email, password)
+#
+#     @pytest.mark.debuging
+#     # @pytest.mark.skip
+#     def test_confirm_sale_order(self, browser, environment):
+#         if environment != 'stage':
+#             pytest.xfail("Test could be unstable if running not on stage env")
+#         page = MainMenuPage(browser)
+#         page.open_crm_page()
+#         opportunity_name = "USD_case_check_invoice(AUTOTEST)"
+#         customer_name = "Tom Patterson"
+#         page = CRMPage(browser)
+#         page.create_opportunity_usd_list_view(opportunity_name, customer_name)
+#         page.should_be_invoice_smartbutton()
+#
+#     @pytest.mark.debuging
+#     # @pytest.mark.skip
+#     def test_validate_transfer_from_sale_order(self, browser, environment):
+#         if environment != 'stage':
+#             pytest.xfail("Test could be unstable if running not on stage env")
+#         page = MainMenuPage(browser)
+#         page.open_proforma_page()
+#         page = ProformaPage(browser)
+#         page.open_latest_confirmed_sale_order()
+#         page.open_sale_order_delivery()
+#         page = TransferPage(browser)
+#         page.validate_transfer()
+#         page.should_be_transfer_validated()
+#
+#     @pytest.mark.skip
+#     def test_validate_invoice_from_sale_order(self, browser, environment):
+#         if environment != 'stage':
+#             pytest.xfail("Test could be unstable if running not on stage env")
+#         page = MainMenuPage(browser)
+#         page.open_proforma_page()
+#         page = ProformaPage(browser)
+#         page.open_latest_confirmed_sale_order()
+#         page.open_sale_order_invoice()
+#         page = InvoicePage(browser)
+#
+#     class TestContactCreation:
+#         @pytest.fixture(scope="function", autouse=True)
+#         def setup(self, request, browser, environment):
+#             cfg = LoginConfig(user_type='default')
+#             link = f"https://{environment}-company.kino-mo.com/web/login"
+#             email = cfg.login
+#             password = cfg.password
+#             page = LoginPage(browser)
+#             page.open(link)
+#             page.login_user(email, password)
