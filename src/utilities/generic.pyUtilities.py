@@ -13,7 +13,7 @@ def generate_random_company(domain=None, email_prefix=None):
 
     random_email_string_length = 10
     random_email_string = "".join(random.choices(string.ascii_lowercase, k=random_email_string_length))
-    random_name_string = "".join(random.choices())
+    random_name_string = "".join(random.choices(string.ascii_lowercase, k=random_email_string_length))
 
     email = f"{email_prefix}_{random_email_string}@{domain}"
 
