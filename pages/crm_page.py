@@ -148,6 +148,7 @@ class CRMPage(BasePage):
             pass
         else:
             self.browser.find_element(By.CSS_SELECTOR, '.fa-close').click()
+        time.sleep(3)
         try:
             self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
         except NoSuchElementException:
