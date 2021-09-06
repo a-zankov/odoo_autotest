@@ -7,6 +7,7 @@ from .pages.main_menu_page import MainMenuPage
 from .pages.crm_page import CRMPage
 from .pages.transfer_page import TransferPage
 from .pages.invoice_page import InvoicePage
+from .pages.contact_page import ContactPage
 import pytest
 
 
@@ -99,3 +100,5 @@ class TestSalePipeline:
 #         link = f"https://{environment}-company.kino-mo.com/"
 #         page = MainMenuPage(browser)
 #         page.open_contacts_page()
+#         page = ContactPage(browser)
+

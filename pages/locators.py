@@ -6,6 +6,14 @@ class LoginPageLocators:
     LOGIN_PASSWORD = (By.CSS_SELECTOR, '#password')
     LOGIN_BUTTON = (By.CSS_SELECTOR, '[type="submit"]')
 
+class ContactsPageLocators:
+    CREATE_CONTACT_PAGE = (By.CSS_SELECTOR, '.o-kanban-button-new')
+    COMPANY_TYPE_RADIOBUTTON = (By.CSS_SELECTOR, '[data-value="company"]')
+    COMPANY_NAME_FIELD = (By.CSS_SELECTOR, '[placeholder="Name"]')
+    EMAIL_FIELD = (By.CSS_SELECTOR, '[name="email"]')
+
+
+
 
 class MainPageLocators:
     SALES_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="sale.sale_menu_root"]')
