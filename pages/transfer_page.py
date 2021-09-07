@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
@@ -14,6 +16,7 @@ class TransferPage(BasePage):
             self.browser.find_element(*TransferLocators.APPLY_IMMEDIATE_TRANSFER).click()
         WebDriverWait(self.browser, 30).until(
             EC.element_to_be_clickable((By.XPATH, '//span[text()="Return"]')))
+        time.sleep(10)
 
     def should_be_transfer_validated(self):
         assert self.is_element_present(*TransferLocators.RETURN_BUTTON), \
