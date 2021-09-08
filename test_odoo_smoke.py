@@ -55,6 +55,7 @@ class TestSalePipeline:
         page.create_opportunity_usd_list_view(opportunity_name, customer_name)
         page.should_be_delivery_smartbutton()
 
+    @pytest.mark.transfer
     @pytest.mark.debuging
     # @pytest.mark.skip
     def test_validate_transfer_from_sale_order(self, browser, environment):
@@ -84,21 +85,19 @@ class TestSalePipeline:
         page.should_be_invoice_paid()
 
 
-# class TestContactCreation:
-#     @pytest.fixture(scope="function", autouse=True)
-#     def setup(self, request, browser, environment):
-#         cfg = LoginConfig(user_type='default')
-#         link = f"https://{environment}-company.kino-mo.com/web/login"
-#         email = cfg.login
-#         password = cfg.password
-#         page = LoginPage(browser)
-#         page.open(link)
-#         page.login_user(email, password)
-#
-#     def test_create_company(self, browser, environment):
-#         page = MainMenuPage(browser)
-#         link = f"https://{environment}-company.kino-mo.com/"
-#         page = MainMenuPage(browser)
-#         page.open_contacts_page()
-#         page = ContactPage(browser)
+class TestContactCreation:
+    @pytest.fixture(scope="function", autouse=True)
+    def setup(self, request, browser, environment):
+        cfg = LoginConfig(user_type='default')
+        link = f"https://{environment}-company.kino-mo.com/web/login"
+        email = cfg.login
+        password = cfg.password
+        page = LoginPage(browser)
+        page.open(link)
+        page.login_user(email, password)
+
+    def test_create_company(self, browser, environment):
+        page = MainMenuPage(browser)
+        page.open_contacts_page()
+        page = ContactPage(browser)
 

@@ -19,4 +19,9 @@ def generate_random_company(domain=None, email_prefix=None):
     email = f"{email_prefix}_{random_email_string}@{domain}"
     name = f"AUTOTEST{random_name_string}"
 
+    random_info = {'email': email, 'name': name}
+    logger.debug(f"Randomly generated email and password: {random_info}")
+
+    return random_info
+
 
