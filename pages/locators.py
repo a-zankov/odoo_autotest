@@ -8,9 +8,12 @@ class LoginPageLocators:
 
 class ContactsPageLocators:
     CREATE_CONTACT = (By.CSS_SELECTOR, '.o-kanban-button-new')
-    COMPANY_TYPE_RADIOBUTTON = (By.CSS_SELECTOR, '[data-value="company"]')
+    COMPANY_TYPE_RADIOBUTTON = (By.CSS_SELECTOR, '[data-value="company"]+label')
     COMPANY_NAME_FIELD = (By.CSS_SELECTOR, '[placeholder="Name"]')
     EMAIL_FIELD = (By.CSS_SELECTOR, '[name="email"]')
+    COMPANY_COUNTRY_DROPDOWN = (By.CSS_SELECTOR, '[name="country_id"]  .ui-autocomplete-input')
+    SAVE_COMPANY = (By.CSS_SELECTOR, '.o_form_button_save')
+    CONTACT_CREATED_MSG = (By.XPATH, '//p[text()="Contact created"]')
 
 
 
@@ -19,7 +22,7 @@ class MainPageLocators:
     SALES_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="sale.sale_menu_root"]')
     CRM_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="crm.crm_menu_root"]')
     USER_MENU_BAR = (By.CSS_SELECTOR, '.o_user_menu')
-    CONTACTS_APP = '[data-menu-xmlid="contacts.menu_contacts"]'
+    CONTACTS_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="contacts.menu_contacts"]')
 
 class CRMLocators:
     CREATE_OPP_LIST_VIEW = (By.CSS_SELECTOR, '.o_list_button_add')
@@ -63,7 +66,8 @@ class TransferLocators:
 
 class InvoiceLocators:
     INVOICE_VALIDATE = (By.XPATH, '//span[text()="Validate"]')
-    INVOICE_PAID_STATE = (By.XPATH, '//div/button[@aria-current="step"][@data-value="paid"]')
+    INVOICE_PAID_STATE = (By.XPATH, '//div/button[@aria-current="step"][@data-value="open"]')
+    INVOICE_FROM_THE_LIST = (By.CSS_SELECTOR, '.o_data_row .o_data_cell')
 
 
 

@@ -1,13 +1,15 @@
 import time
-
-from .pages.proforma_page import ProformaPage
-from .config.config import LoginConfig
-from .pages.login_page import LoginPage
-from .pages.main_menu_page import MainMenuPage
-from .pages.crm_page import CRMPage
-from .pages.transfer_page import TransferPage
-from .pages.invoice_page import InvoicePage
-from .pages.contact_page import ContactPage
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from pages.proforma_page import ProformaPage
+from config.config import LoginConfig
+from pages.login_page import LoginPage
+from pages.main_menu_page import MainMenuPage
+from pages.crm_page import CRMPage
+from pages.transfer_page import TransferPage
+from pages.invoice_page import InvoicePage
+from pages.contact_page import ContactPage
 import pytest
 
 
@@ -71,7 +73,6 @@ class TestSalePipeline:
         page.should_be_transfer_validated()
 
     @pytest.mark.refactor
-    @pytest.mark.debuging
     def test_validate_invoice_from_sale_order(self, browser, environment):
         if environment != 'stage':
             pytest.xfail("Test could be unstable if running not on stage env")
@@ -81,6 +82,9 @@ class TestSalePipeline:
         page.open_latest_confirmed_sale_order_invoice()
         page.open_sale_order_invoice()
         page = InvoicePage(browser)
+        WebDriverWait(browser, 15).until(
+             EC.element_to_be_clickable((By.XPATH, '//li[text()="Invoices"]')))
+        page.open_invoice_from_list()
         page.validate_invoice()
         page.should_be_invoice_paid()
 
@@ -96,8 +100,14 @@ class TestContactCreation:
         page.open(link)
         page.login_user(email, password)
 
+
     def test_create_company(self, browser, environment):
         page = MainMenuPage(browser)
+        link = f"https://{environment}-company.kino-mo.com/"
         page.open_contacts_page()
         page = ContactPage(browser)
+        page.create_company_card()
+        page.should_be_company_create()
+
+
 
