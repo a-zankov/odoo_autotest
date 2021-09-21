@@ -44,8 +44,6 @@ class TestSalePipeline:
         page.login_user(email, password)
 
     @pytest.mark.sale
-    @pytest.mark.debuging
-    # @pytest.mark.skip
     def test_confirm_sale_order(self, browser, environment):
         if environment != 'stage':
             pytest.xfail("Test could be unstable if running not on stage env")
@@ -58,8 +56,6 @@ class TestSalePipeline:
         page.should_be_delivery_smartbutton()
 
     @pytest.mark.transfer
-    @pytest.mark.debuging
-    # @pytest.mark.skip
     def test_validate_transfer_from_sale_order(self, browser, environment):
         if environment != 'stage':
             pytest.xfail("Test could be unstable if running not on stage env")
@@ -72,7 +68,6 @@ class TestSalePipeline:
         page.validate_transfer()
         page.should_be_transfer_validated()
 
-    @pytest.mark.refactor
     def test_validate_invoice_from_sale_order(self, browser, environment):
         if environment != 'stage':
             pytest.xfail("Test could be unstable if running not on stage env")
@@ -83,14 +78,20 @@ class TestSalePipeline:
         page.open_sale_order_invoice()
         page = InvoicePage(browser)
         WebDriverWait(browser, 15).until(
-             EC.element_to_be_clickable((By.XPATH, '//li[text()="Invoices"]')))
+            EC.element_to_be_clickable((By.XPATH, '//li[text()="Invoices"]')))
         page.open_invoice_from_list()
         page.validate_invoice()
         page.should_be_invoice_paid()
 
-    def test_validate_taxes_logic(self, browser, environment):
-        pass
 
+    @pytest.mark.debuging
+    def test_check_taxation_logic(self, browser, environment):
+        link = f"https://{environment}-company.kino-mo.com/web#id=3515&action=458&model=sale.order&view_type=form&menu_id=299"
+        page = ProformaPage(browser)
+        page.open(link)
+        time.sleep(3)
+        page.check_sale_order_taxes()
+        time.sleep(3)
 
 
 class TestContactCreation:
@@ -104,7 +105,6 @@ class TestContactCreation:
         page.open(link)
         page.login_user(email, password)
 
-    @pytest.mark.contact
     def test_create_company(self, browser, environment):
         page = MainMenuPage(browser)
         link = f"https://{environment}-company.kino-mo.com/"
@@ -112,6 +112,3 @@ class TestContactCreation:
         page = ContactPage(browser)
         page.create_company_card()
         page.should_be_company_create()
-
-
-

@@ -1,4 +1,3 @@
-
 import time
 
 from selenium.webdriver.common.by import By
@@ -13,7 +12,6 @@ class ProformaPage(BasePage):
     def open_latest_confirmed_sale_order_invoice_delivery(self):
         self.browser.find_element(*ProformaLocators.SALE_ORDER_LATEST_CONFIRMED_DELIVERY).click()
 
-
     def open_latest_confirmed_sale_order_invoice(self):
         self.browser.find_element(*ProformaLocators.SALE_ORDER_LATEST_CONFIRMED_INVOICE).click()
 
@@ -22,3 +20,8 @@ class ProformaPage(BasePage):
 
     def open_sale_order_invoice(self):
         self.browser.find_element(*ProformaLocators.SALE_ORDER_INVOICES_SMARTBUTTON).click()
+
+    def check_sale_order_taxes(self):
+        taxes_tags = self.browser.find_elements(By.CSS_SELECTOR, '.o_badge_text')
+        apps_name = [i.get_attribute("title") for i in taxes_tags]
+
