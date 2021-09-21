@@ -26,7 +26,7 @@ class ContactPage(BasePage):
 
     def should_be_company_create(self):
         assert self.is_element_present(*ContactsPageLocators.CONTACT_CREATED_MSG), "Company card has not been created" \
-                                                                                   "successfully"
+                                                                                   " successfully"
 
 
 

@@ -88,6 +88,10 @@ class TestSalePipeline:
         page.validate_invoice()
         page.should_be_invoice_paid()
 
+    def test_validate_taxes_logic(self, browser, environment):
+        pass
+
+
 
 class TestContactCreation:
     @pytest.fixture(scope="function", autouse=True)
@@ -100,7 +104,7 @@ class TestContactCreation:
         page.open(link)
         page.login_user(email, password)
 
-
+    @pytest.mark.contact
     def test_create_company(self, browser, environment):
         page = MainMenuPage(browser)
         link = f"https://{environment}-company.kino-mo.com/"
