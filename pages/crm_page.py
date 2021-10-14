@@ -115,7 +115,7 @@ class CRMPage(BasePage):
         opp_name.send_keys(opportunity_name)
         customer_field = self.browser.find_element(*CRMLocators.CUSTOMER_NAME)
         customer_field.send_keys(customer_name)
-        select_customer = self.browser.find_element(*CRMLocators.SELECT_FROM_DROPDOWN)
+        select_customer = self.browser.find_element(*CRMLocators.USD_CLIENT)
         select_customer.click()
         self.browser.find_element(*CRMLocators.DEAL_TYPE).click()
         self.browser.find_element(*CRMLocators.DEAL_TYPE_SELECT).click()

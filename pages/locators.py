@@ -41,6 +41,7 @@ class CRMLocators:
     REFERRED_BY_SELECT = (By.XPATH, '//a[text()="FB Leads Center"]')
     EXPECTED_CLOSING = (By.CSS_SELECTOR, '.o_datepicker_input[name="date_deadline"]')
     CREATE_PROFORMA_FROM_OPP = (By.CSS_SELECTOR, '[name="action_create_new_sale_order"]')
+    USD_CLIENT = (By.XPATH, '//a[text()="Tom Patterson"]')
 
 class ProformaLocators:
     ADD_A_PRODUCT_BUTTON = (By.XPATH, '//a[text()="Add a product"]')

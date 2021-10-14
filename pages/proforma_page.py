@@ -23,5 +23,13 @@ class ProformaPage(BasePage):
 
     def check_sale_order_taxes(self):
         taxes_tags = self.browser.find_elements(By.CSS_SELECTOR, '.o_badge_text')
-        apps_name = [i.get_attribute("title") for i in taxes_tags]
+        taxes_value = [i.get_attribute("title") for i in taxes_tags]
+        print(taxes_value)
+        uk_invalid_vat_er = ['VAT 20% UK', 'VAT 20% UK', 'VAT 20% UK', 'VAT 20% UK',
+                             'VAT 20% UK', 'VAT 20% UK', 'VAT 20% UK', 'VAT 20% UK']
+        eu_invalid_vat_er = ['VAT 23% IR', 'VAT 20% UK', 'VAT 20% UK', 'VAT 21% LT',
+                             'VAT 21% LT', 'VAT 21% LT', 'VAT 21% LT', 'VAT 20% UK']
+        lt_valid_vat_er = []
+        ru_vat_er = []
+
 
