@@ -83,8 +83,6 @@ class TestSalePipeline:
         page.validate_invoice()
         page.should_be_invoice_paid()
 
-
-    @pytest.mark.debuging
     def test_check_taxation_logic(self, browser, environment):
         link = f"https://{environment}-company.kino-mo.com/web#id=3515&action=458&model=sale.order&view_type=form&menu_id=299"
         page = ProformaPage(browser)
@@ -92,6 +90,17 @@ class TestSalePipeline:
         time.sleep(3)
         page.check_sale_order_taxes()
         time.sleep(3)
+
+    @pytest.mark.debuging
+    def test_check_invoice_split_from_one_warehouse(self, browser, environment):
+        page = MainMenuPage(browser)
+        page.open_crm_page()
+        opportunity_name = "Check_invoice_splitting_one_warehouse(AUTOTEST)"
+        customer_name = "IBM Italy"
+        page = CRMPage(browser)
+        page.create_sale_order_one_warehouse(opportunity_name, customer_name)
+        page.should_be_delivery_smartbutton()
+
 
 
 class TestContactCreation:

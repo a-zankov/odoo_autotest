@@ -42,7 +42,7 @@ class CRMLocators:
     EXPECTED_CLOSING = (By.CSS_SELECTOR, '.o_datepicker_input[name="date_deadline"]')
     CREATE_PROFORMA_FROM_OPP = (By.CSS_SELECTOR, '[name="action_create_new_sale_order"]')
     USD_CLIENT = (By.XPATH, '//a[text()="Tom Patterson"]')
-
+    EU_CLIENT = (By.XPATH, '//a[text()="IBM Italy"]')
 class ProformaLocators:
     ADD_A_PRODUCT_BUTTON = (By.XPATH, '//a[text()="Add a product"]')
     PRODUCT_FIELD = (By.CSS_SELECTOR, '[name="product_id"] .ui-autocomplete-input')
@@ -50,6 +50,7 @@ class ProformaLocators:
     ADD_A_SECTION_BUTTON = (By.XPATH, '//a[text()="Add a section"]')
     PROFORMA_TAB = (By.XPATH, '//a[text() = "Order Lines"]')
     PAYMENT_TERMS = (By.CSS_SELECTOR, '[name="payment_term_id"] .o_input_dropdown')
+    PAYMENT_TERMS_INPUT = (By.CSS_SELECTOR, '[name="payment_term_id"] input')
     INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[class="btn oe_stat_button"][name="action_view_invoice"]')
     DELIVERY_SMARTBUTTON = (By.CSS_SELECTOR, '[class="btn oe_stat_button"][name="action_view_delivery"]')
     SALE_ORDER_LATEST_CONFIRMED_DELIVERY = (By.XPATH, '//td[text()="Nothing to Invoice"]')

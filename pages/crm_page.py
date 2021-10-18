@@ -158,6 +158,57 @@ class CRMPage(BasePage):
         # WebDriverWait(self.browser, 15).until(
         #     EC.presence_of_element_located((By.CSS_SELECTOR, '.o_menu_brand')))
 
+    def create_sale_order_one_warehouse(self, opportunity_name, customer_name):
+        create_opp_button = self.browser.find_element(*CRMLocators.CREATE_OPP_LIST_VIEW)
+        create_opp_button.click()
+        opp_name = self.browser.find_element(*CRMLocators.OPPORTUNITY_NAME_LIST_VIEW)
+        opp_name.send_keys(opportunity_name)
+        customer_field = self.browser.find_element(*CRMLocators.CUSTOMER_NAME)
+        customer_field.send_keys(customer_name)
+        select_customer = self.browser.find_element(*CRMLocators.EU_CLIENT)
+        select_customer.click()
+        self.browser.find_element(*CRMLocators.DEAL_TYPE).click()
+        self.browser.find_element(*CRMLocators.DEAL_TYPE_SELECT).click()
+        self.browser.find_element(*CRMLocators.EXPECTED_CLOSING).send_keys("30 Nov 2021" + Keys.ESCAPE)
+        self.browser.find_element(By.XPATH, '//a[text()="Followup"]').click()
+        self.browser.find_element(*CRMLocators.REFERRED_BY).click()
+        self.browser.find_element(By.XPATH, '//a[text()="event_form"]').click()
+        self.browser.find_element(By.CSS_SELECTOR, '.o_form_button_save').click()
+        time.sleep(1)
+        create_so = self.browser.find_element(By.CSS_SELECTOR, '[name="action_create_new_sale_order"]')
+        create_so.click()
+        WebDriverWait(self.browser, 15).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
+        self.browser.find_element(*ProformaLocators.PAYMENT_TERMS_INPUT).click()
+        self.browser.find_element(*ProformaLocators.PAYMENT_TERMS_INPUT).send_keys("30 Net Days")
+        self.browser.find_element(By.XPATH, '//a[text()="30 Net Days"]').click()
+        self.add_a_product_to_proforma("[KMHWAA100CL] HYPERVSN Alignment Mount L", 1)
+        self.add_a_product_to_proforma("[Delivery-E] Accessories delivery way (Economy)", 1)
+        # self.add_a_product_to_proforma("[KM-A-TR-100.A] HYPERVSN Tripod", 1)
+        # self.add_a_section_to_proforma("Delivery")
+        # self.add_a_product_to_proforma("[Delivery-E] Accessories delivery way (Economy)", 1)
+        self.browser.find_element(By.CSS_SELECTOR, '.o_form_button_save').click()
+        time.sleep(3)
+        self.browser.find_element(By.CSS_SELECTOR, '[name="button_send_to_operation"]').click()
+        # WebDriverWait(self.browser, 15).until(
+        #     EC.element_to_be_clickable((By.CSS_SELECTOR, '.o_menu_brand')))
+        try:
+            self.browser.find_element(By.CSS_SELECTOR, '.fa-close')
+        except NoSuchElementException:
+            pass
+        else:
+            self.browser.find_element(By.CSS_SELECTOR, '.fa-close').click()
+        time.sleep(3)
+        try:
+            self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
+        except NoSuchElementException:
+            pass
+        else:
+            self.browser.find_element(By.CSS_SELECTOR, '[id="operation_reviewer_action_confirm"]').click()
+        # WebDriverWait(self.browser, 15).until(
+        #     EC.presence_of_element_located((By.CSS_SELECTOR, '.o_menu_brand')))
+
+
     def should_be_invoice_smartbutton(self):
         assert self.is_element_present(*ProformaLocators.INVOICE_SMARTBUTTON), \
             'No invoice smartbutton created'
@@ -165,7 +216,3 @@ class CRMPage(BasePage):
     def should_be_delivery_smartbutton(self):
         assert self.is_element_present(*ProformaLocators.DELIVERY_SMARTBUTTON), \
             'No delivery smartbutton created'
-
-
-
-
