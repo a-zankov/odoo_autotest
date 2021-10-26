@@ -6,6 +6,7 @@ class LoginPageLocators:
     LOGIN_PASSWORD = (By.CSS_SELECTOR, '#password')
     LOGIN_BUTTON = (By.CSS_SELECTOR, '[type="submit"]')
 
+
 class ContactsPageLocators:
     CREATE_CONTACT = (By.CSS_SELECTOR, '.o-kanban-button-new')
     COMPANY_TYPE_RADIOBUTTON = (By.CSS_SELECTOR, '[data-value="company"]+label')
@@ -16,13 +17,12 @@ class ContactsPageLocators:
     CONTACT_CREATED_MSG = (By.XPATH, '//p[text()="Contact created"]')
 
 
-
-
 class MainPageLocators:
     SALES_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="sale.sale_menu_root"]')
     CRM_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="crm.crm_menu_root"]')
     USER_MENU_BAR = (By.CSS_SELECTOR, '.o_user_menu')
     CONTACTS_APP = (By.CSS_SELECTOR, '[data-menu-xmlid="contacts.menu_contacts"]')
+
 
 class CRMLocators:
     CREATE_OPP_LIST_VIEW = (By.CSS_SELECTOR, '.o_list_button_add')
@@ -43,12 +43,14 @@ class CRMLocators:
     CREATE_PROFORMA_FROM_OPP = (By.CSS_SELECTOR, '[name="action_create_new_sale_order"]')
     USD_CLIENT = (By.XPATH, '//a[text()="Tom Patterson"]')
     EU_CLIENT = (By.XPATH, '//a[text()="IBM Italy"]')
+
+
 class ProformaLocators:
     ADD_A_PRODUCT_BUTTON = (By.XPATH, '//a[text()="Add a product"]')
     PRODUCT_FIELD = (By.CSS_SELECTOR, '[name="product_id"] .ui-autocomplete-input')
     SELECT_FROM_DROPDOWN = (By.XPATH, '//a[text()="[Solo L (US)] HYPERVSN Solo L (US)"]')
     ADD_A_SECTION_BUTTON = (By.XPATH, '//a[text()="Add a section"]')
-    PROFORMA_TAB = (By.XPATH, '//a[text() = "Order Lines"]')
+    PROFORMA_TAB = (By.XPATH, '//a[text() = "Proforma Lines"]')
     PAYMENT_TERMS = (By.CSS_SELECTOR, '[name="payment_term_id"] .o_input_dropdown')
     PAYMENT_TERMS_INPUT = (By.CSS_SELECTOR, '[name="payment_term_id"] input')
     INVOICE_SMARTBUTTON = (By.CSS_SELECTOR, '[class="btn oe_stat_button"][name="action_view_invoice"]')
@@ -64,16 +66,10 @@ class TransferLocators:
     APPLY_IMMEDIATE_TRANSFER = (By.XPATH, '//span[text()="Apply"]')
     IMMEDIATE_TRANSFER_WINDOW = (By.XPATH, '//h4[text()="Immediate Transfer?"]')
     RETURN_BUTTON = (By.XPATH, '//button[@class="btn btn-secondary"]/span[text()="Return"]')
+    SELECT_TRANSFER_FROM_LIST = (By.CSS_SELECTOR, '.ui-sortable .o_data_cell')
 
 
 class InvoiceLocators:
     INVOICE_VALIDATE = (By.XPATH, '//span[text()="Validate"]')
     INVOICE_PAID_STATE = (By.XPATH, '//div/button[@aria-current="step"][@data-value="open"]')
     INVOICE_FROM_THE_LIST = (By.CSS_SELECTOR, '.o_data_row .o_data_cell')
-
-
-
-
-
-
-

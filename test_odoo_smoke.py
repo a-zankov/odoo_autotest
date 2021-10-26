@@ -91,7 +91,6 @@ class TestSalePipeline:
         page.check_sale_order_taxes()
         time.sleep(3)
 
-    @pytest.mark.debuging
     def test_check_invoice_split_from_one_warehouse(self, browser, environment):
         page = MainMenuPage(browser)
         page.open_crm_page()
@@ -100,6 +99,24 @@ class TestSalePipeline:
         page = CRMPage(browser)
         page.create_sale_order_one_warehouse(opportunity_name, customer_name)
         page.should_be_delivery_smartbutton()
+
+    @pytest.mark.debuging
+    def test_check_invoice_split_from_different_warehouses(self, browser, environment):
+        page = MainMenuPage(browser)
+        page.open_crm_page()
+        opportunity_name = "Check_invoice_splitting_different_warehouses(AUTOTEST)"
+        customer_name = "IBM Italy"
+        page = CRMPage(browser)
+        page.create_sale_order_different_warehouses(opportunity_name, customer_name)
+        page.should_be_delivery_smartbutton()
+        page = ProformaPage(browser)
+        page.open_sale_order_delivery()
+        page = TransferPage(browser)
+        page.validate_several_transfers()
+        WebDriverWait(browser, 15).until(
+            EC.element_to_be_clickable((By.XPATH, '//span[text()="Invoices"]')))
+        page = InvoicePage(browser)
+        page.verify_location_vat_several_warehouses(browser)
 
 
 

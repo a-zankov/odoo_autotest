@@ -47,6 +47,14 @@ class BasePage:
         self.browser.find_element(*ProformaLocators.PROFORMA_TAB).click()
         time.sleep(1)
 
+    def select_next_object_kanban_view(self):
+        self.browser.find_element(By.CSS_SELECTOR, '[accesskey="n"]').click()
+
+    def open_other_info_tab(self):
+        self.browser.find_element(By.XPATH, '//a[text()="Other Info"]').click()
+
+
+
 
 
 
